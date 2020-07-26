@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!-- 요청이 들어오면 자동으로 맵핑되어 아래 컨트롤러 클래스가 실행되게 선언 -->
+<!-- 컨트롤러 클래스들을 선언 -->
+
+<bean id="index" name="/index.do"  class="controller.ShoppingController"  />
+<bean id="sujak" name="/sujak.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" />
+<bean id="suinfo" name="/suinfo.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+ <bean id="sutoolcart" name="/sutoolcart.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="sucartdel" name="/sucartdel.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="joinform" name="/joinform.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="joinproc" name="/joinproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 
+<bean id="login" name="/login.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="loginproc" name="/loginproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 		
+<bean id="logout" name="/logout.do"  class="controller.ShoppingController"
+ />
+<bean id="sutoolbuy" name="/sutoolbuy.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" />   
+<bean id="sucartbuy" name="/sucartbuy.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="cartalldel" name="/cartalldel.do"  class="controller.ShoppingController"
+ /> 
+<bean id="stanlyinfo" name="/stanlyinfo.do"  class="controller.ShoppingController"
+ />  
+<bean id="tooluse" name="/tooluse.do"  class="controller.ShoppingController"
+ />  
+<bean id="download" name="/download.do"  class="controller.ShoppingController"
+ /> 	
+<bean id="downfile" name="/downfile.do"  class="controller.ShoppingController"
+ />  
+<bean id="board" name="/board.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="boardwrite" name="/boardwrite.do"  class="controller.ShoppingController"
+ />  
+<bean id="boardwriteproc" name="/boardwriteproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="boardinfo" name="/boardinfo.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	 	
+
+<bean id="boardrewrite" name="/boardrewrite.do"  class="controller.ShoppingController"
+ />
+<bean id="boardrewriteproc" name="/boardrewriteproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	 	
+<bean id="boardupdate" name="/boardupdate.do"  class="controller.ShoppingController"
+ />
+<bean id="boardupdateproc" name="/boardupdateproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+<bean id="boarddelete" name="/boarddelete.do"  class="controller.ShoppingController"
+ /> 	
+<bean id="boarddeleteproc" name="/boarddeleteproc.do"  class="controller.ShoppingController"
+ 	p:shoppingDao-ref="shoppingDao" /> 	
+ 		 	
+<!-- Jsp설정(서블릿에서 결과를 리턴할 jsp호출하는 방법) -->
+<bean id="viewResolver"
+	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	<property name="contentType" value="text/html; charset=euc-kr"></property>	
+	<property name="suffix" value=".jsp" />
+
+</bean>
+
+
+
+
+ <!-- 데이터 베이스 연결 클래스 등록 -->
+ <bean id="shoppingDao" class="model.ShoppingDAO"  p:dataSource-ref="dataSource"  /> 
+ 
+ <!-- 데이터 베이스 설정(오라클용 데이터 베이스) -->
+ <bean id="dataSource" 
+ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+ <property name="driverClassName">
+ 	<value>oracle.jdbc.driver.OracleDriver</value>
+ </property>
+ <property name="url">
+ 	<value>jdbc:oracle:thin:@localhost:1521:XE</value>
+ </property>
+ <property name="username">
+ 	<value>system</value>
+ </property>
+ <property name="password">
+ 	<value>123456</value>
+ </property>
+ </bean> 
+
+
+<!-- 스프링에서 파일을 다운할 클래스를 선언 -->
+<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<property name="order">
+		<value>0</value>
+	</property>
+</bean>
+<bean id="downloadView" class="controller.DownloadView" />
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
